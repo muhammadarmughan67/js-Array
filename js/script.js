@@ -10,11 +10,20 @@ function simpleAlert(){
     alert("alert button is clicked")
     document.getElementById("output").innerHTML = "alert button is clicked"
 }
+// print name
+function printName() {
+    let userName = document.getElementById("userNameInput").value.trim();
+    if (userName === "") {
+        alert("Please enter your name in the input field.");
+        return;
+    }
+    document.getElementById("output").innerText = userName;
+    document.getElementById("userNameInput").value = "";
+}
 
-// print my name 
-function printName (){
-    let userName = prompt("please enter your name")
-    document.getElementById("output").innerHTML = userName ;
+
+function clearInput() {
+    document.getElementById("userNameInput").value = "";
 }
 
 // print all cities 
@@ -24,29 +33,40 @@ function printAllCities(){
         document.getElementById("output").innerHTML += i+1 +") " + cities[i] + "<br />"
     }
 }
-
-// add city in list 
-function addCity(){
-    document.getElementById("output").innerHTML = " "
-    let newCity = prompt("please enter city name you want to add")
-    cities.push(newCity)
-
-    for (let i=0; i<cities.length; i++){
-        document.getElementById("output").innerHTML += i+1 +")" + cities[i] + "<br />"
+// add cities
+function addCity() {
+    let newCity = document.getElementById("userNameInput").value.trim();
+    if (newCity === "") {
+        alert("Please enter a city name in the input field.");
+        return;
     }
+    cities.push(newCity);
+    document.getElementById("userNameInput").value = "";
+    let output = "";
+    for (let i = 0; i < cities.length; i++) {
+        output += (i + 1) + ") " + cities[i] + "<br>";
+    }
+    document.getElementById("output").innerHTML = output;
 }
 
-// generate table 
-function generateTable(){
-    tableNumber = +prompt("please enter table number that use want to generate")
-    document.getElementById("output").innerHTML = `<h3>Table of ${tableNumber}<h3/> <hr />`
-    for(let i=1; i<11; i++){
-        let table = tableNumber + " * " + i + " = " + tableNumber*i + "<br />"
-        document.getElementById("output").innerHTML += table ;
+
+// table generate
+function generateTable() {
+    let tableNumber = document.getElementById("userNameInput").value.trim();
+    if (tableNumber === "") {
+        alert("Please enter a number in the input field.");
+        return;
     }
+    if (isNaN(tableNumber)) {
+        alert("Please enter a valid number in the input field.");
+        return;
+    }
+    document.getElementById("userNameInput").value = "";
+    tableNumber = +tableNumber;
+    let output = `<h3>Table of ${tableNumber}</h3><hr>`;
+    for (let i = 1; i < 11; i++) {
+        let row = `${tableNumber} * ${i} = ${tableNumber * i}<br>`;
+        output += row;
+    }
+    document.getElementById("output").innerHTML = output;
 }
-// output box size
-window.onload = function() {
-    var buttonsHeight = document.getElementById('buttons').offsetHeight;
-    document.getElementById('output').style.height = buttonsHeight + 'px';
-};

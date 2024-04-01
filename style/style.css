@@ -23,3 +23,6 @@ footer a{
     font-weight: bold;
     margin-top: auto;
 }
+#output {
+    min-height: 190px; /* Adjust this value as needed */
+}
